@@ -25,14 +25,33 @@ def search(root, value)
     current_node = root
     while current_node
       return current_node if current_node.value == value
-      current_node = current_node.left if current_node.value > value
-      current_node = current_node.right if current_node.value < value
+      if current_node.value > value
+        current_node = current_node.left
+      else
+        current_node = current_node.right if current_node.value < value
+      end
     end
     false
+  end
+end
+
+def recursive_search(node, value)
+  return false if node.nil?
+  return node if node.value == value
+  if node.value > value
+    recursive_search(node.left, value)
+  else
+    recursive_search(node.right, value)
   end
 end
 
 p search(root, 12).value == 12
 p search(root, 1).value == 1
 p search(root, 5).value == 5
+p search(root, 99) == false
+
+p recursive_search(root, 12).value == 12
+p recursive_search(root, 1).value == 1
+p recursive_search(root, 5).value == 5
+p recursive_search(root, 99) == false
 
