@@ -113,15 +113,15 @@ class LinkedList
 
   def reverse!
     current_node = head
-    cache_1 = head.next
+    cache_1 = current_node.next
     cache_2 = cache_1.next
-    head.next = nil
+    current_node.next = nil # reverse
     while cache_2
-      cache_1.next = current_node
+      cache_1.next = current_node # reverse
       current_node = cache_1
       cache_1, cache_2 = cache_2, cache_2.next
     end
-    cache_1.next = current_node
+    cache_1.next = current_node # reverse
     @head = cache_1
   end
 
