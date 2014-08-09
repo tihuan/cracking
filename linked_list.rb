@@ -1,3 +1,4 @@
+require 'pry'
 class Node
   attr_accessor :value, :next
   def initialize(value = nil)
@@ -110,6 +111,21 @@ class LinkedList
     current_node
   end
 
+  def reverse!
+    current_node = head
+    cache_node_1 = current_node.next
+    cache_node_2 = cache_node_1.next
+    current_node.next = nil
+    while cache_node_2
+      cache_node_1.next = current_node
+      current_node = cache_node_1
+      cache_node_1 = cache_node_2
+      cache_node_2 = cache_node_2.next
+    end
+    cache_node_1.next = current_node
+    @head = cache_node_1
+  end
+
   def show_list(current_node, msg = nil)
     msg ||= ""
     return msg[0..-4] if current_node.nil?
@@ -149,4 +165,6 @@ link.add(7)
 link.add(8)
 link.add(9)
 # p link.show_list(link.head) == "0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 "
-p link.nth_to_last(1).value == 8
+# p link.nth_to_last(1).value == 8
+link.reverse!
+p link.show_list(link.head) #== "9 -> 8 -> 7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1 -> 0 "
