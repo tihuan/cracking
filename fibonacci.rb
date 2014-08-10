@@ -6,6 +6,12 @@
 # Buttom Up DP w/ library is also linear but has the benefit of
 # using less memory because you only need to track the last two
 # values in your library
+
+# Optimization: #bup_fib_1 > #bup_fib. #fav_fib is the fastest but hits
+# stack too deep earlier.
+
+# Recommendation is #bup_fib_1
+
 require 'benchmark'
 
 def naive_fib(n)
@@ -31,29 +37,6 @@ end
 
 def bup_fib(n)
   fib = []
-  for k in 1..n
-    if k <= 2
-      f = 1
-    else
-      # p "checking fib inside else"
-      # p fib
-      # p "check fib[0]: #{fib[0]}"
-      # p "check fib[1]: #{fib[1]}"
-      f = fib[-2] + fib[-1]
-      # p "check f: #{f}"
-    end
-    # p "updating last 2"
-    fib = fib.last(2)
-
-    fib << f
-    # p "after update"
-    # p fib
-  end
-  return fib[-1]
-end
-
-def bup_fib(n)
-  fib = []
   for k in 1..(n)
     if k <= 2
       f = 1
@@ -65,6 +48,7 @@ def bup_fib(n)
   return fib[n]
 end
 
+# Refactored to only keep track of the last two numbers.
 def bup_fib_1(n)
   fib = []
   for k in 1..n
@@ -124,12 +108,12 @@ end
 # p fav_fib(5) == 5
 # p fav_fib(6) == 8
 # p fav_fib(10) #== 55
-n = 300000
+n = 400000
 # puts Benchmark.measure { naive_fib(n) }
 # puts "dp"
 # puts Benchmark.measure { dp_fib(n) } # up to 16373 before too deep
 # puts "fav"
 # puts Benchmark.measure { fav_fib(n) } # up to 7704 before too deep. Faster though
 # puts "bup"
-puts Benchmark.measure { bup_fib(n) } # up to 7704 before too deep. Faster though
 puts Benchmark.measure { bup_fib_1(n) } # up to 7704 before too deep. Faster though
+puts Benchmark.measure { bup_fib(n) } # up to 7704 before too deep. Faster though
