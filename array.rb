@@ -11,7 +11,10 @@ def first_repeat(string)
       lib[c.to_sym] = true
     end
   end
+  string.each_char do |c|
+    return c if lib[c.to_sym] == false
+  end
 end
 
 s = "teeter"
-first_repeat(s)
+p first_repeat(s) == "r"
