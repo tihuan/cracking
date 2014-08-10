@@ -26,7 +26,7 @@ def dp_fib(n, fib=[])
   # p "done! fib(#{n}) is: #{f}"
   fib[n] = f
   # p "fib(#{n}) at the end: #{fib}"
-  f
+  # f
 end
 
 def bup_fib(n)
