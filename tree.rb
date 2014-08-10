@@ -107,16 +107,24 @@ end
 def heapify(root)
   nodes = []
   load_to_array(root, nodes)
-  nodes.sort_by { |node| node.value }
+  sorted_nodes = nodes.sort_by { |node| node.value }
+  reassign_children(sorted_nodes)
 end
 
 # use preorder traverse to load
-# 5 -> 3 -> 1 -> 4 -> 10 -> 7 -> 12 -> 13
 def load_to_array(node, array = [])
   return array if node.nil?
   array << node
   load_to_array(node.left, array)
   load_to_array(node.right, array)
+end
+
+def reassign_children(nodes)
+  nodes.each_with_index do |node, i|
+    node.left = nodes[2*i+1]
+    node.right = nodes[2*i+2]
+  end
+  nodes
 end
 
 # p search(root, 12).value == 12
@@ -146,5 +154,6 @@ end
 # p load_to_array(root, loaded_array).first.value == 5
 # p load_to_array(root, loaded_array).last.value == 13
 
-p heapify(root).first.value == 1
-p heapify(root).last.value == 13
+heapified_nodes = heapify(root)
+p heapified_nodes.first.value == 1
+p heapified_nodes.last.value == 13
