@@ -53,12 +53,30 @@ def height(node)
   return 1 + [height(node.left), height(node.right)].max
 end
 
-# 5 -> 3 -> 1 -> 4 -> 10 -> 7 -> 12 -> 13
+# VLR
 def preorder_trav(node)
   return if node.nil?
   p node.value
   preorder_trav(node.left)
   preorder_trav(node.right)
+end
+
+# LVR
+# 1 -> 3 -> 4 -> 5 -> 7 -> 10 -> 12
+def inorder_trav(node)
+  return if node.nil?
+  inorder_trav(node.left)
+  p node.value
+  inorder_trav(node.right)
+end
+
+#LRV
+# 1 -> 4 -> 3 -> 7 -> 12 -> 10 -> 5
+def postorder_trav(node)
+  return if node.nil?
+  postorder_trav(node.left)
+  postorder_trav(node.right)
+  p node.value
 end
 
 # p search(root, 12).value == 12
@@ -74,4 +92,6 @@ end
 
 # p height(root) == 4
 
-preorder_trav(root)
+# preorder_trav(root) # 5 -> 3 -> 1 -> 4 -> 10 -> 7 -> 12 -> 13
+inorder_trav(root) # 1 -> 3-> 4 -> 5 -> 7 -> 10 -> 13 -> 12 ((remember 13 is the right node))
+# postorder_trav(root) # 1 -> 4 -> 3 -> 7 -> 13 -> 12 -> 10 -> 5
