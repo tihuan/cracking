@@ -46,9 +46,19 @@ def recursive_search(node, value)
   end
 end
 
+
+# A node's height is the max of its subtree's heights + 1
 def height(node)
   return 0 if node.nil?
   return 1 + [height(node.left), height(node.right)].max
+end
+
+# 5 -> 3 -> 1 -> 4 -> 10 -> 7 -> 12 -> 13
+def preorder_trav(node)
+  return if node.nil?
+  p node.value
+  preorder_trav(node.left)
+  preorder_trav(node.right)
 end
 
 # p search(root, 12).value == 12
@@ -62,4 +72,6 @@ end
 # p recursive_search(root, 13).value == 13
 # p recursive_search(root, 99) == false
 
-p height(root) == 4
+# p height(root) == 4
+
+preorder_trav(root)
