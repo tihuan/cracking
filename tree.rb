@@ -13,7 +13,8 @@ end
 node1 = Node.new(1)
 node4 = Node.new(4)
 node7 = Node.new(7)
-node12 = Node.new(12)
+node13 = Node.new(13)
+node12 = Node.new(12, nil, node13)
 node3 = Node.new(3, node1, node4)
 node10 = Node.new(10, node7, node12)
 root = Node.new(5, node3, node10)
@@ -53,5 +54,6 @@ p search(root, 99) == false
 p recursive_search(root, 12).value == 12
 p recursive_search(root, 1).value == 1
 p recursive_search(root, 5).value == 5
+p recursive_search(root, 13).value == 13
 p recursive_search(root, 99) == false
 
