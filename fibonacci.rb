@@ -65,6 +65,20 @@ def bup_fib(n)
   return fib[n]
 end
 
+def bup_fib_1(n)
+  fib = []
+  for k in 1..n
+    if k <= 2
+      f = 1
+    else
+      f = fib[-2] + fib[-1]
+    end
+    fib = fib.last(2)
+    fib << f
+  end
+  return fib[-1]
+end
+
 def fav_fib(n, count = 0, current_num = 0, next_num = 1)
   return 1 if n <= 2
   return current_num if n == count
