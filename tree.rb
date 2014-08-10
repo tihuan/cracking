@@ -81,6 +81,7 @@ end
 
 # go left if current_value > targets, go right if current_value < targets, else return
 def common_ancestor(node, small, large)
+  return false if node == nil
   if small.value < node.value && large.value < node.value
     common_ancestor(node.left, small, large)
   elsif small.value > node.value && large.value > node.value
@@ -88,6 +89,19 @@ def common_ancestor(node, small, large)
   else
     return node
   end
+end
+
+def common_ancestor_iterative(node, small, large)
+  while node != nil
+    if node.value > small.value && node.value > large.value
+      node = node.left
+    elsif node.value < small.value && node.value < large.value
+      node = node.right
+    else
+      return node
+    end
+  end
+  false
 end
 
 # p search(root, 12).value == 12
@@ -107,5 +121,8 @@ end
 # inorder_trav(root) # 1 -> 3-> 4 -> 5 -> 7 -> 10 -> 13 -> 12 ((remember 13 is the right node))
 # postorder_trav(root) # 1 -> 4 -> 3 -> 7 -> 13 -> 12 -> 10 -> 5
 
-p common_ancestor(root, node7, node13).value == 10
-p common_ancestor(root, node1, node13).value == 5
+# p common_ancestor(root, node7, node13).value == 10
+# p common_ancestor(root, node1, node13).value == 5
+
+# p common_ancestor_iterative(root, node7, node13).value == 10
+# p common_ancestor_iterative(root, node1, node13).value == 5
