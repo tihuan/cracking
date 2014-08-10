@@ -104,6 +104,19 @@ def common_ancestor_iterative(node, small, large)
   false
 end
 
+def heapify(root)
+
+end
+
+# use preorder traverse to load
+# 5 -> 3 -> 1 -> 4 -> 10 -> 7 -> 12 -> 13
+def load_to_array(node, array = [])
+  return array if node.nil?
+  array << node
+  load_to_array(node.left, array)
+  load_to_array(node.right, array)
+end
+
 # p search(root, 12).value == 12
 # p search(root, 1).value == 1
 # p search(root, 5).value == 5
@@ -126,3 +139,7 @@ end
 
 # p common_ancestor_iterative(root, node7, node13).value == 10
 # p common_ancestor_iterative(root, node1, node13).value == 5
+
+# loaded_array = []
+# p load_to_array(root, loaded_array).first.value == 5
+# p load_to_array(root, loaded_array).last.value == 13
