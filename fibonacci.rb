@@ -31,13 +31,38 @@ end
 
 def bup_fib(n)
   fib = []
-  for k in (1..(n+1))
-    p k
-    return f = 1 if k <= 2
-    f = fib[k-1] + fib[k-2]
+  for k in 1..n
+    if k <= 2
+      f = 1
+    else
+      # p "checking fib inside else"
+      # p fib
+      # p "check fib[0]: #{fib[0]}"
+      # p "check fib[1]: #{fib[1]}"
+      f = fib[-2] + fib[-1]
+      # p "check f: #{f}"
+    end
+    # p "updating last 2"
+    fib = fib.last(2)
+
+    fib << f
+    # p "after update"
+    # p fib
+  end
+  return fib[-1]
+end
+
+def bup_fib(n)
+  fib = []
+  for k in 1..(n)
+    if k <= 2
+      f = 1
+    else
+      f = fib[k-1] + fib[k-2]
+    end
     fib[k] = f
   end
-  return f[n]
+  return fib[n]
 end
 
 def fav_fib(n, count = 0, current_num = 0, next_num = 1)
@@ -63,7 +88,7 @@ end
 # p dp_fib(4) == 3
 # p dp_fib(5) == 5
 # p dp_fib(6) == 8
-p dp_fib(10) == 55
+# p dp_fib(10) == 55
 
 ##### Bottom Up Dynamic Programming Tests
 
@@ -74,6 +99,7 @@ p dp_fib(10) == 55
 # p bup_fib(5) == 5
 # p bup_fib(6) == 8
 # p bup_fib(10) #== 55
+# p bup_fib(200000) #== 55
 
 ##### Favorite Solution Tests
 
@@ -84,9 +110,12 @@ p dp_fib(10) == 55
 # p fav_fib(5) == 5
 # p fav_fib(6) == 8
 # p fav_fib(10) #== 55
-# n = 7704
+n = 300000
 # puts Benchmark.measure { naive_fib(n) }
 # puts "dp"
-# puts Benchmark.measure { dp_fib(16373) } # up to 16373 before too deep
+# puts Benchmark.measure { dp_fib(n) } # up to 16373 before too deep
 # puts "fav"
 # puts Benchmark.measure { fav_fib(n) } # up to 7704 before too deep. Faster though
+# puts "bup"
+puts Benchmark.measure { bup_fib(n) } # up to 7704 before too deep. Faster though
+puts Benchmark.measure { bup_fib_1(n) } # up to 7704 before too deep. Faster though
