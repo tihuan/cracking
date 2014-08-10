@@ -127,6 +127,19 @@ def reassign_children(nodes)
   nodes
 end
 
+# Breadth First Search
+def print_nodes(node)
+  return if node.nil?
+  queue = []
+  queue << node
+  while queue.compact.size > 0
+    current_node = queue.shift
+    p current_node.value
+    queue << current_node.left
+    queue << current_node.right
+  end
+end
+
 # p search(root, 12).value == 12
 # p search(root, 1).value == 1
 # p search(root, 5).value == 5
@@ -155,5 +168,8 @@ end
 # p load_to_array(root, loaded_array).last.value == 13
 
 heapified_nodes = heapify(root)
-p heapified_nodes.first.value == 1
-p heapified_nodes.last.value == 13
+# p heapified_nodes.first.value == 1
+# p heapified_nodes.last.value == 13
+# print_nodes(heapified_nodes.first) # 1 -> 3 -> 4 -> 5 -> 7 -> 10 -> 12 -> 13
+
+
