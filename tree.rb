@@ -46,14 +46,20 @@ def recursive_search(node, value)
   end
 end
 
-p search(root, 12).value == 12
-p search(root, 1).value == 1
-p search(root, 5).value == 5
-p search(root, 99) == false
+def height(node)
+  return 0 if node.nil?
+  return 1 + [height(node.left), height(node.right)].max
+end
 
-p recursive_search(root, 12).value == 12
-p recursive_search(root, 1).value == 1
-p recursive_search(root, 5).value == 5
-p recursive_search(root, 13).value == 13
-p recursive_search(root, 99) == false
+# p search(root, 12).value == 12
+# p search(root, 1).value == 1
+# p search(root, 5).value == 5
+# p search(root, 99) == false
 
+# p recursive_search(root, 12).value == 12
+# p recursive_search(root, 1).value == 1
+# p recursive_search(root, 5).value == 5
+# p recursive_search(root, 13).value == 13
+# p recursive_search(root, 99) == false
+
+p height(root) == 4
