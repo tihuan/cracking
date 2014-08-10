@@ -105,7 +105,9 @@ def common_ancestor_iterative(node, small, large)
 end
 
 def heapify(root)
-
+  nodes = []
+  load_to_array(root, nodes)
+  nodes.sort_by { |node| node.value }
 end
 
 # use preorder traverse to load
@@ -143,3 +145,6 @@ end
 # loaded_array = []
 # p load_to_array(root, loaded_array).first.value == 5
 # p load_to_array(root, loaded_array).last.value == 13
+
+p heapify(root).first.value == 1
+p heapify(root).last.value == 13
