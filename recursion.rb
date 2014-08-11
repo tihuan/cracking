@@ -14,8 +14,28 @@ def factorial_iterative(n)
   answer
 end
 
-p factorial(5) == 120
-p factorial_iterative(5) == 120
-n = 8700
-puts Benchmark.measure { factorial(n) }
-puts Benchmark.measure { factorial_iterative(n) }
+def b_search_index(nums, target, lower = 0, upper = nums.size - 1)
+  range = (upper - lower) / 2
+  center = range + lower
+  return false if range == 0 && nums[lower] != target
+  if target == nums[center]
+    center
+  elsif target <  nums[center]
+    b_search_index(nums, target, lower, center - 1)
+  else
+    b_search_index(nums, target, center + 1, upper)
+  end
+end
+
+# p factorial(5) == 120
+# p factorial_iterative(5) == 120
+# n = 8700
+# puts Benchmark.measure { factorial(n) }
+# puts Benchmark.measure { factorial_iterative(n) }
+
+nums = [1,2,3,4,5,6,7]
+p b_search_index(nums, 4) == 3
+p b_search_index(nums, 7) == 6
+p b_search_index(nums, 1) == 0
+p b_search_index(nums, 8) == false
+
