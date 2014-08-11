@@ -1,9 +1,10 @@
 def factorial(n)
-  return 1 if n == 1
+  return 1 if n <= 1
   n * factorial(n-1)
 end
 
 def factorial_iterative(n)
+  return 1 if n <= 1
   answer = 1
   for i in 1..n
     answer *= i
