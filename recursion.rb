@@ -47,6 +47,15 @@ def bsearch_iterative(nums, target)
   end
 end
 
+class Array
+  def permutations
+    return [self] if size < 2
+    perm = []
+    each { |e| (self - [e]).permutations.each { |p| perm << ([e] + p) } }
+    perm
+  end
+end
+
 # p factorial(5) == 120
 # p factorial_iterative(5) == 120
 # n = 8700
@@ -59,8 +68,10 @@ nums = [1,2,3,4,5,6,7]
 # p b_search_index(nums, 1) == 0
 # p b_search_index(nums, 8) == false
 
-p bsearch_iterative(nums, 4) == 3
-p bsearch_iterative(nums, 7) == 6
-p bsearch_iterative(nums, 1) == 0
-p bsearch_iterative(nums, 8) == false
+# p bsearch_iterative(nums, 4) == 3
+# p bsearch_iterative(nums, 7) == 6
+# p bsearch_iterative(nums, 1) == 0
+# p bsearch_iterative(nums, 8) == false
 
+s = "abc"
+p s.chars.permutations
