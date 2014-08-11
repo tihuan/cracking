@@ -47,8 +47,8 @@ end
 # s = "aeiou"
 # p delete_words(t, s) == "Bttl f th Vwls: Hw vs. Grzny"
 
-s = "123456"
-p reverse(s) == "654321"
+# s = "123456"
+# p reverse(s) == "654321"
 
-s = "12345"
-p reverse(s) == "54321"
+# s = "12345"
+# p reverse(s) == "54321"
