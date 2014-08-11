@@ -30,6 +30,23 @@ def b_search_index(nums, target, lower = 0, upper = nums.size - 1)
   end
 end
 
+def bsearch_iterative(nums, target)
+  lower = 0
+  upper = nums.size - 1
+  while true
+    range = (upper - lower) / 2
+    center = range + lower
+    return false if range == 0 && nums[center] != target
+    if nums[center] == target
+      return center
+    elsif nums[center] > target
+      upper = center - 1
+    else
+      lower = center + 1
+    end
+  end
+end
+
 # p factorial(5) == 120
 # p factorial_iterative(5) == 120
 # n = 8700
@@ -37,8 +54,13 @@ end
 # puts Benchmark.measure { factorial_iterative(n) }
 
 nums = [1,2,3,4,5,6,7]
-p b_search_index(nums, 4) == 3
-p b_search_index(nums, 7) == 6
-p b_search_index(nums, 1) == 0
-p b_search_index(nums, 8) == false
+# p b_search_index(nums, 4) == 3
+# p b_search_index(nums, 7) == 6
+# p b_search_index(nums, 1) == 0
+# p b_search_index(nums, 8) == false
+
+p bsearch_iterative(nums, 4) == 3
+p bsearch_iterative(nums, 7) == 6
+p bsearch_iterative(nums, 1) == 0
+p bsearch_iterative(nums, 8) == false
 
