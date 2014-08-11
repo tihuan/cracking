@@ -29,6 +29,14 @@ def delete_words(target, source)
   processed_string
 end
 
+def reverse(string)
+  traverse_length = (string.size / 2).ceil - 1
+  for i in 0..traverse_length
+    string[i], string[-1-i] = string[-1-i], string[i]
+  end
+  string
+end
+
 # s = "teeter"
 # p first_repeat(s) == "r"
 
@@ -38,3 +46,9 @@ end
 # t = "Battle of the Vowels: Hawaii vs. Grozny"
 # s = "aeiou"
 # p delete_words(t, s) == "Bttl f th Vwls: Hw vs. Grzny"
+
+s = "123456"
+p reverse(s) == "654321"
+
+s = "12345"
+p reverse(s) == "54321"
