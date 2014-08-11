@@ -15,14 +15,17 @@ def factorial_iterative(n)
 end
 
 def b_search_index(nums, target, lower = 0, upper = nums.size - 1)
+  # use range + lower instead of lower + upper
   range = (upper - lower) / 2
   center = range + lower
   return false if range == 0 && nums[lower] != target
   if target == nums[center]
     center
   elsif target <  nums[center]
+    # center - 1 to avoid double counting
     b_search_index(nums, target, lower, center - 1)
   else
+    # center + 1 to avoid double counting
     b_search_index(nums, target, center + 1, upper)
   end
 end
