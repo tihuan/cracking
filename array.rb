@@ -29,12 +29,12 @@ def delete_words(target, source)
   processed_string
 end
 
-s = "teeter"
-p first_repeat(s) == "r"
+# s = "teeter"
+# p first_repeat(s) == "r"
 
-s = "total"
-p first_repeat(s) == "o"
+# s = "total"
+# p first_repeat(s) == "o"
 
-t = "Battle of the Vowels: Hawaii vs. Grozny"
-s = "aeiou"
-p delete_words(t, s) == "Bttl f th Vwls: Hw vs. Grzny"
+# t = "Battle of the Vowels: Hawaii vs. Grozny"
+# s = "aeiou"
+# p delete_words(t, s) == "Bttl f th Vwls: Hw vs. Grzny"
