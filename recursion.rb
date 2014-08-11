@@ -1,3 +1,5 @@
+require 'benchmark'
+
 def factorial(n)
   return 1 if n <= 1
   n * factorial(n-1)
@@ -14,3 +16,6 @@ end
 
 p factorial(5) == 120
 p factorial_iterative(5) == 120
+n = 8700
+puts Benchmark.measure { factorial(n) }
+puts Benchmark.measure { factorial_iterative(n) }
