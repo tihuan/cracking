@@ -36,7 +36,7 @@ def bsearch_iterative(nums, target)
   while true
     range = (upper - lower) / 2
     center = range + lower
-    return false if range == 0 && nums[center] != target
+    return false if range == 0 && nums[lower] != target
     if nums[center] == target
       return center
     elsif nums[center] > target
