@@ -13,39 +13,53 @@ def selection_sort(array)
   array
 end
 
+# def quick_sort(array, lower = 0, upper = array.size - 1)
+#   p "===entering quick sort==="
+#   p "begin array: #{array}"
+#   p "lower: #{lower}"
+#   p "upper: #{upper}"
+#   pivot_value = array[(lower + upper) / 2]
+#   p "pivot_index: #{(lower + upper) / 2}, pivot_value: #{pivot_value}"
+#   i = lower
+#   j = upper
+
+#   while i <= j
+#     p "i: #{i}, j: #{j}"
+#     i += 1 while array[i] < pivot_value
+#     j -= 1 while array[j] > pivot_value
+#     if i <= j
+#       p "before swapping array: #{array}"
+#       p "i: #{i} - value: #{array[i]}, j: #{j} - value: #{array[j]}"
+#       array[i], array[j] = array[j], array[i] if i < j
+#       i += 1
+#       j -=1
+#       p "while loop array: #{array}"
+#     end
+#     p "ending i: #{i}, j: #{j}"
+#   end
+#   quick_sort(array, lower, j) if lower < j
+#   quick_sort(array, i, upper) if i < upper
+#   p "After loop array: #{array}"
+#   array
+# end
+
 def quick_sort(array, lower = 0, upper = array.size - 1)
-  p "===entering quick sort==="
-  p "begin array: #{array}"
-  p "lower: #{lower}"
-  p "upper: #{upper}"
-  pivot_value = array[(lower + upper) / 2]
-  p "pivot_index: #{(lower + upper) / 2}, pivot_value: #{pivot_value}"
+  pivot_index = (lower + upper) / 2
+  pivot_value = array[pivot_index]
   i = lower
   j = upper
-
   while i <= j
-    p "i: #{i}, j: #{j}"
-    while array[i] < pivot_value
-      i += 1
-    end
-
-    while array[j] > pivot_value
-      j -= 1
-    end
+    i += 1 while array[i] < pivot_value
+    j -= 1 while array[j] > pivot_value
 
     if i <= j
-      p "before swapping array: #{array}"
-      p "i: #{i} - value: #{array[i]}, j: #{j} - value: #{array[j]}"
       array[i], array[j] = array[j], array[i] if i < j
       i += 1
-      j -=1
-      p "while loop array: #{array}"
+      j -= 1
     end
-    p "ending i: #{i}, j: #{j}"
   end
   quick_sort(array, lower, j) if lower < j
   quick_sort(array, i, upper) if i < upper
-  p "After loop array: #{array}"
   array
 end
 
