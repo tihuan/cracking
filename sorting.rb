@@ -1,10 +1,12 @@
 def selection_sort(array)
-  array.each_with_index do |value, index|
+  array.each_with_index do |_, index|
     min = index
-    for i in (index + 1)..(array.size - 1)
+    lower = index + 1
+    upper = array.size - 1
+    for i in lower..upper
       min = i if array[i] < array[min]
     end
-    unless index > min
+    if index < min
       array[index], array[min] = array[min], array[index]
     end
   end
@@ -13,3 +15,5 @@ end
 
 array = [3,4,1,2,5,1,2,7,8,5,13,1,1,1,3,1]
 p selection_sort(array) == array.sort
+
+
