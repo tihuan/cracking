@@ -63,10 +63,11 @@ def bup_fib_1(n)
   return fib[-1]
 end
 
+# recursive with invariants
 def fav_fib(n, count = 0, current_num = 0, next_num = 1)
   return 1 if n <= 2
   return current_num if n == count
-  fav_fib(n, count + 1, next_num, current_num + next_num)
+  return fav_fib(n, count + 1, next_num, current_num + next_num)
 end
 
 ##### Naive Fib Tests
