@@ -49,26 +49,34 @@ def bup_fib(n)
 end
 
 # Refactored to only keep track of the last two numbers.
+
 def bup_fib_1(n)
-  fib = []
-  for k in 1..n
-    if k <= 2
+  fibs = []
+  0.upto(n) do |i|
+    if i <= 2
       f = 1
     else
-      f = fib[-2] + fib[-1]
+      f = fibs[-2] + fibs[-1]
     end
-    fib = fib.last(2)
-    fib << f
+    fibs = fibs.last(2) if fibs.size > 2
+    fibs << f
   end
-  return fib[-1]
+  fibs.last
 end
 
 # recursive with invariants
-def fav_fib(n, count = 0, current_num = 0, next_num = 1)
+def fav_fib(n, count = 1, current = 1, next_num = 1)
   return 1 if n <= 2
-  return current_num if n == count
-  return fav_fib(n, count + 1, next_num, current_num + next_num)
+  return current if count == n
+  return fav_fib(n, count + 1, next_num, current + next_num)
 end
+
+
+# def fav_fib(n, count = 0, current_num = 0, next_num = 1)
+#   return 1 if n <= 2
+#   return current_num if n == count
+#   return fav_fib(n, count + 1, next_num, current_num + next_num)
+# end
 
 ##### Naive Fib Tests
 
@@ -100,15 +108,25 @@ end
 # p bup_fib(10) #== 55
 # p bup_fib(200000) #== 55
 
+##### Bottom Up Dynamic Programming Tests
+
+# p bup_fib_1(1) == 1
+# p bup_fib_1(2) == 1
+# p bup_fib_1(3) == 2
+# p bup_fib_1(4) == 3
+# p bup_fib_1(5) == 5
+# p bup_fib_1(6) == 8
+# p bup_fib_1(10) #== 55
+
 ##### Favorite Solution Tests
 
-# p fav_fib(1) == 1
-# p fav_fib(2) == 1
-# p fav_fib(3) == 2
-# p fav_fib(4) == 3
-# p fav_fib(5) == 5
-# p fav_fib(6) == 8
-# p fav_fib(10) #== 55
+p fav_fib(1) == 1
+p fav_fib(2) == 1
+p fav_fib(3) == 2
+p fav_fib(4) == 3
+p fav_fib(5) == 5
+p fav_fib(6) == 8
+p fav_fib(10) #== 55
 n = 400000
 # puts Benchmark.measure { naive_fib(n) }
 # puts "dp"
@@ -116,5 +134,5 @@ n = 400000
 # puts "fav"
 # puts Benchmark.measure { fav_fib(n) } # up to 7704 before too deep. Faster though
 # puts "bup"
-puts Benchmark.measure { bup_fib_1(n) } # up to 7704 before too deep. Faster though
-puts Benchmark.measure { bup_fib(n) } # up to 7704 before too deep. Faster though
+# puts Benchmark.measure { bup_fib_1(n) } # up to 7704 before too deep. Faster though
+# puts Benchmark.measure { bup_fib(n) } # up to 7704 before too deep. Faster though

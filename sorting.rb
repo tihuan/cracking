@@ -1,16 +1,12 @@
 def selection_sort(array)
-  array.each_with_index do |_, index|
-    min = index
-    lower = index + 1
-    upper = array.size - 1
-    for i in lower..upper
-      min = i if array[i] < array[min]
-    end
-    if index < min
-      array[index], array[min] = array[min], array[index]
-    end
+  0.upto(array.size) do |i|
+    min = i
+     (i + 1).upto(array.size - 1) do |j|
+        min = j if array[j] < array[min]
+     end
+     array[i], array[min] = array[min], array[i] if i < min
   end
-  array
+  return array
 end
 
 # def quick_sort(array, lower = 0, upper = array.size - 1)
@@ -44,14 +40,13 @@ end
 # end
 
 def quick_sort(array, lower = 0, upper = array.size - 1)
-  pivot_index = (lower + upper) / 2
-  pivot_value = array[pivot_index]
+  pivot = (lower + upper) / 2
+  pivot_value = array[pivot]
   i = lower
   j = upper
   while i <= j
     i += 1 while array[i] < pivot_value
     j -= 1 while array[j] > pivot_value
-
     if i <= j
       array[i], array[j] = array[j], array[i] if i < j
       i += 1
@@ -59,9 +54,26 @@ def quick_sort(array, lower = 0, upper = array.size - 1)
     end
   end
   quick_sort(array, lower, j) if lower < j
-  quick_sort(array, i, upper) if i < upper
+  quick_sort(array, i, upper) if upper > i
   array
 end
+
+# def quick_sort(array, lower = 0, upper = array.size - 1)
+#   i = lower
+#   j = upper
+#   pivot = (lower + upper) / 2
+#   pivot_value = array[pivot]
+#   i += 1 while array[i] < pivot_value
+#   j -= 1 while array[j] > pivot_value
+#   if i <= j
+#     array[i], array[j] = array[j], array[i] if i < j
+#     i += 1
+#     j -=1
+#   end
+#   quick_sort(array, lower, j) if lower < j
+#   quick_sort(array, i, upper) if upper > i
+#   array
+# end
 
 array = [1,10,2,9,3,8,4,7,5,6]
 # array = [1,6,2,9,3,8,4,7,5,10]

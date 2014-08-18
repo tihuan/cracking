@@ -5,6 +5,7 @@
 def first_repeat(string)
   lib = {}
   string.each_char do |c|
+    # care if value is already true
     if lib[c.to_sym] == nil
       lib[c.to_sym] = false
     elsif lib[c.to_sym] == false
@@ -47,8 +48,8 @@ end
 # s = "aeiou"
 # p delete_words(t, s) == "Bttl f th Vwls: Hw vs. Grzny"
 
-# s = "123456"
-# p reverse(s) == "654321"
+s = "123456"
+p reverse(s) == "654321"
 
-# s = "12345"
-# p reverse(s) == "54321"
+s = "12345"
+p reverse(s) == "54321"
