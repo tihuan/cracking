@@ -86,17 +86,18 @@ end
 # Stable: Yes
 #
 # Algorithms::Sort.mergesort [5, 4, 3, 1, 2] => [1, 2, 3, 4, 5]
-def mergesort(container)
-  return container if container.size <= 1
-  mid = container.size / 2
-  left = container[0...mid]
-  right = container[mid...container.size]
+
+def mergesort(array)
+  return array if array.size <= 1
+  mid = array.size / 2
+  left = array[0...mid]
+  right = array[mid...array.size]
   merge(mergesort(left), mergesort(right))
 end
 
 def merge(left, right)
   sorted = []
-  until left.empty? or right.empty?
+  until left.empty? || right.empty?
     left.first <= right.first ? sorted << left.shift : sorted << right.shift
   end
   sorted + left + right
@@ -106,6 +107,7 @@ array = [1,10,2,9,3,8,4,7,5,6]
 # array = [1,6,2,9,3,8,4,7,5,10]
 # array = [1,6,2,5,3,8,4,7,9,10]
 # p selection_sort(array) == array.sort
-p quick_sort(array) == array.sort
+# p quick_sort(array) == array.sort
+p mergesort(array) == array.sort
 
 
