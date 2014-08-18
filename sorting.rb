@@ -64,18 +64,18 @@ end
 # Stable: Yes
 #
 # Algorithms::Sort.insertion_sort [5, 4, 3, 1, 2] => [1, 2, 3, 4, 5]
-def insertion_sort(container)
-  return container if container.size < 2
-  (1..container.size-1).each do |i|
-    value = container[i]
-    j = i-1
-    while j >= 0 and container[j] > value do
-      container[j+1] = container[j]
-      j = j-1
+
+def insertionsort(array)
+  return array if array.size <= 1
+  0.upto(array.size-1) do |i|
+    j = i - 1
+    while j >= 0 && array[j] > array[i]
+      array[i], array[j] = array[j], array[i]
+      i -= 1
+      j -= 1
     end
-    container[j+1] = value
   end
-  container
+  array
 end
 
  # Mergesort: A stable divide-and-conquer sort that sorts small chunks of the container and then merges them together.
@@ -108,6 +108,7 @@ array = [1,10,2,9,3,8,4,7,5,6]
 # array = [1,6,2,5,3,8,4,7,9,10]
 # p selection_sort(array) == array.sort
 # p quick_sort(array) == array.sort
-p mergesort(array) == array.sort
+# p mergesort(array) == array.sort
+p insertionsort(array) == array.sort
 
 
