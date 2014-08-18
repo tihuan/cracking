@@ -109,6 +109,6 @@ array = [1,10,2,9,3,8,4,7,5,6]
 # p selection_sort(array) == array.sort
 # p quick_sort(array) == array.sort
 # p mergesort(array) == array.sort
-p insertionsort(array) == array.sort
+# p insertionsort(array) == array.sort
 
 
