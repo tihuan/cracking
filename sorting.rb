@@ -40,40 +40,43 @@ end
 # end
 
 def quick_sort(array, lower = 0, upper = array.size - 1)
-  pivot = (lower + upper) / 2
-  pivot_value = array[pivot]
   i = lower
   j = upper
-  while i <= j
-    i += 1 while array[i] < pivot_value
-    j -= 1 while array[j] > pivot_value
-    if i <= j
-      array[i], array[j] = array[j], array[i] if i < j
-      i += 1
-      j -= 1
-    end
+  pivot = (lower + upper) / 2
+  pivot_value = array[pivot]
+  i += 1 while array[i] < pivot_value
+  j -= 1 while array[j] > pivot_value
+  if i <= j
+    array[i], array[j] = array[j], array[i] if i < j
+    i += 1
+    j -=1
   end
   quick_sort(array, lower, j) if lower < j
   quick_sort(array, i, upper) if upper > i
   array
 end
 
-# def quick_sort(array, lower = 0, upper = array.size - 1)
-#   i = lower
-#   j = upper
-#   pivot = (lower + upper) / 2
-#   pivot_value = array[pivot]
-#   i += 1 while array[i] < pivot_value
-#   j -= 1 while array[j] > pivot_value
-#   if i <= j
-#     array[i], array[j] = array[j], array[i] if i < j
-#     i += 1
-#     j -=1
-#   end
-#   quick_sort(array, lower, j) if lower < j
-#   quick_sort(array, i, upper) if upper > i
-#   array
-# end
+# Insertion sort: Elements are inserted sequentially into the right position.
+# Requirements: Needs to be able to compare elements with <=>, and the [] []= methods should
+# be implemented for the container.
+# Time Complexity: О(n^2)
+# Space Complexity: О(n) total, O(1) auxiliary
+# Stable: Yes
+#
+# Algorithms::Sort.insertion_sort [5, 4, 3, 1, 2] => [1, 2, 3, 4, 5]
+def self.insertion_sort(container)
+return container if container.size < 2
+(1..container.size-1).each do |i|
+value = container[i]
+j = i-1
+while j >= 0 and container[j] > value do
+container[j+1] = container[j]
+j = j-1
+end
+container[j+1] = value
+end
+container
+end
 
 array = [1,10,2,9,3,8,4,7,5,6]
 # array = [1,6,2,9,3,8,4,7,5,10]
