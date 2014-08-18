@@ -64,18 +64,18 @@ end
 # Stable: Yes
 #
 # Algorithms::Sort.insertion_sort [5, 4, 3, 1, 2] => [1, 2, 3, 4, 5]
-def self.insertion_sort(container)
-return container if container.size < 2
-(1..container.size-1).each do |i|
-value = container[i]
-j = i-1
-while j >= 0 and container[j] > value do
-container[j+1] = container[j]
-j = j-1
-end
-container[j+1] = value
-end
-container
+def insertion_sort(container)
+  return container if container.size < 2
+  (1..container.size-1).each do |i|
+    value = container[i]
+    j = i-1
+    while j >= 0 and container[j] > value do
+      container[j+1] = container[j]
+      j = j-1
+    end
+    container[j+1] = value
+  end
+  container
 end
 
 array = [1,10,2,9,3,8,4,7,5,6]
